@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="baezbeats-mode" content="browser">
+  <title>BaezBeats</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <noscript>BaezBeats needs JavaScript. Open this page in Google Chrome.</noscript>
+  <script type="module">
+    // The website needs Chrome's folder access (Chrome or Edge on a computer).
+    const web = document.querySelector('meta[name="baezbeats-mode"]')?.content === 'browser';
+    const ok = 'AudioWorkletNode' in window && (!web || 'showDirectoryPicker' in window);
+    if (ok) import('./js/main.js');
+    else document.getElementById('app').innerHTML = `
+      <div class="unsupported">
+        <img src="logo.svg" alt="">
+        <h1>BaezBeats needs Google Chrome or Microsoft Edge on a computer.</h1>
+        <p>It reads your music straight from your computer, and only those browsers allow that. Open this page in Chrome or Edge on a Mac or PC.</p>
+      </div>`;
+  </script>
+</body>
+</html>
